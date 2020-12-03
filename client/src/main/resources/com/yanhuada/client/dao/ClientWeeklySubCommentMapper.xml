@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yanhuada.client.dao.ClientWeeklySubCommentMapper">
+
+    <select id="list" resultType="com.yanhuada.model.WeeklySubComment">
+        select *
+        from weekly_sub_comment
+        where weekly_comment_id = #{weeklyCommentId}
+        order by like_num asc, id desc,reply_num asc
+        <if test="page != null">
+            limit #{page.offset} ,#{page.count}
+        </if>
+    </select>
+
+    <select id="total" resultType="java.lang.Long">
+        select count(id)
+        from weekly_sub_comment
+        where weekly_comment_id = #{weeklyCommentId}
+    </select>
+</mapper>

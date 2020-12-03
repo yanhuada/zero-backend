@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yanhuada.platform.dao.PlatformCircleTopicContentMapper">
+
+    <sql id="list_sql_where">
+        <where>
+            ctc.circle_topic_id = ct.id
+            <if test="circleId != null">
+                and ct.circle_id = #{circleId}
+            </if>
+            <if test="circleTopicId != null">
+                and ctc.circle_topic_id = #{circleTopicId}
+            </if>
+            <if test="author != null and author != ''">
+                and ctc.author like concat('%', #{author} , '%')
+            </if>
+            <if test="title != null and title != ''">
+                and ctc.title like concat('%', #{title} , '%')
+            </if>
+            <if test="publishStatus != null">
+                and ctc.public_status = #{publishStatus}
+            </if>
+        </where>
+    </sql>
+
+    <select id="list" resultType="com.yanhuada.model.CircleTopicContent">
+        select ctc.id,ctc.circle_topic_id,ctc.author,ctc.title,ctc.content,ctc.publish_status,ctc.publish_time,ctc.created_at
+        from circle_topic_content ctc, circle_topic ct
+        <include refid="list_sql_where" />
+        order by ctc.id
+        <if test="page != null">
+            limit #{page.offset} ,#{page.count}
+        </if>
+    </select>
+
+    <select id="total" resultType="java.lang.Long">
+        select count(ctc.id)
+        from circle_topic_content ctc, circle_topic ct
+        <include refid="list_sql_where"/>
+    </select>
+
+</mapper>

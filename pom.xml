@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.12.RELEASE</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>${parentGroupId}</groupId>
+    <artifactId>${parentArtifactId}</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>zero-backend</name>
+    <url>http://maven.apache.org</url>
+
+    <modules>
+        <module>client</module>
+        <module>common</module>
+        <module>model</module>
+        <module>dao</module>
+        <module>exception</module>
+        <module>service</module>
+        <module>mybatis-generator</module>
+        <module>platform</module>
+    </modules>
+
+    <properties>
+        <parentGroupId>com.yanhuada</parentGroupId>
+        <parentArtifactId>zero-backend</parentArtifactId>
+
+        <apache.commons.lang3.version>3.9</apache.commons.lang3.version>
+        <com.aliyun-java-sdk-core.version>4.4.6</com.aliyun-java-sdk-core.version>
+        <com.aliyun-java-sdk-sts.version>3.0.0</com.aliyun-java-sdk-sts.version>
+        <com.aliyun.oss.version>3.8.0</com.aliyun.oss.version>
+
+        <com.rabbitmq.version>4.2.1</com.rabbitmq.version>
+
+        <com.github.tencentyun.version>1.2</com.github.tencentyun.version>
+
+        <druid.version>1.0.9</druid.version>
+        <mybatis.spring.version>1.3.0</mybatis.spring.version>
+        <mybatis.typehandlers.version>1.0.2</mybatis.typehandlers.version>
+        <mysql.version>5.1.30</mysql.version>
+        <com.yanhuada.dev.version>1.0-SNAPSHOT</com.yanhuada.dev.version>
+        <wechat.sdk.version>3.7.2.B</wechat.sdk.version>
+        <maven.repositories.url>https://repo.rdc.aliyun.com/repository/122335-snapshot-ZSKkRW/</maven.repositories.url>
+        <maven.compile.plugins.version>3.8.0</maven.compile.plugins.version>
+
+
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>${com.rabbitmq.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-java-sdk-sts</artifactId>
+                <version>${com.aliyun-java-sdk-sts.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-java-sdk-core</artifactId>
+                <version>${com.aliyun-java-sdk-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.aliyun.oss</groupId>
+                <artifactId>aliyun-sdk-oss</artifactId>
+                <version>${com.aliyun.oss.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.spring.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-typehandlers-jsr310</artifactId>
+                <version>${mybatis.typehandlers.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${apache.commons.lang3.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.yanhuada.dev</groupId>
+                <artifactId>yanhuada-sdk</artifactId>
+                <version>${com.yanhuada.dev.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>weixin-java-miniapp</artifactId>
+                <version>${wechat.sdk.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.tencentyun</groupId>
+                <artifactId>tls-sig-api</artifactId>
+                <version>${com.github.tencentyun.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <repositories>
+        <repository>
+            <id>rdc-releases</id>
+            <url>${maven.repositories.url}</url>
+        </repository>
+    </repositories>
+    <!--    <repositories>-->
+    <!--        <repository>-->
+    <!--            <id>nexus</id>-->
+    <!--            <url>${maven.repositories.url}</url>-->
+    <!--            <snapshots>-->
+    <!--                <enabled>true</enabled>-->
+    <!--            </snapshots>-->
+    <!--            <releases>-->
+    <!--                <enabled>true</enabled>-->
+    <!--            </releases>-->
+    <!--        </repository>-->
+    <!--    </repositories>-->
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compile.plugins.version}</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

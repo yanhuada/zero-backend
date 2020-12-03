@@ -1,0 +1,10 @@
+
+*.log
+*/target
+
+*.iml
+/.idea
+*.private.properties
+mybatisGeneratorConfiguration.xml
+*/src/main/resources/generated/document.html
+*/src/main/resources/generated/swagger-ui/*
